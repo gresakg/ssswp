@@ -66,7 +66,7 @@ class Ssslider {
 				echo "</div>";
 			}
 			echo "</div>";
-			echo "<script>jQuery('.slider').sss("transition": 900);</script>";
+			echo "<script>jQuery('.slider').sss('transition': 900);</script>";
 		}
 	}
 
