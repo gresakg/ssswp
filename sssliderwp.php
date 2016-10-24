@@ -37,8 +37,8 @@ class Ssslider {
 	}
 
 	public function load_scripts() {
-		wp_enqueue_script( 'sssjs',trailingslashit($this->url)."scripts/vendor/sss/sss.js",array('jquery'),$this->version);
-		wp_enqueue_style( 'ssscss',trailingslashit($this->url)."scripts/vendor/sss/sss.css",false,$this->version);
+		wp_enqueue_script( 'sssjs',trailingslashit($this->url)."scripts/sss/sss.min.js",array('jquery'),$this->version);
+		wp_enqueue_style( 'ssscss',trailingslashit($this->url)."scripts/sss/sss.css",false,$this->version);
 	}
 
 	public function display_slider($atts) {
@@ -58,13 +58,15 @@ class Ssslider {
 			echo "<div class='slider'>";
 			while($query->have_posts()) {
 				$query->the_post();
-				echo "<div class='slide' style='width:100%'>";
-				echo "<h1>".get_the_title()."</h1>";
+				echo "<div class='slide'>";
 				the_post_thumbnail( 'full', '' );
+				echo "<div class='text'><h1>".get_the_title()."</h1>";
+				the_content();
+				echo '<div class="more"><a href="#">Preberite več ...</a></div></div>';
 				echo "</div>";
 			}
 			echo "</div>";
-			echo "<script>jQuery('.slider').sss();</script>";
+			echo "<script>jQuery('.slider').sss({'slideShow': false});</script>";
 		}
 	}
 
