@@ -79,6 +79,7 @@ class Ssslider {
 
 	protected function get_target_url($cf) {
 		$url = isset($cf['ssm_target_url'][0])?$cf['ssm_target_url'][0]:"#";
+		if($url == "#") return $url;
 		$sch = is_ssl()?"https://":"http://";
 		$url = preg_match('/^https?:\/\//',$url) ? $url : $sch.$url;
 		return $url;
