@@ -1,0 +1,3 @@
+[submodule "meta-box"]
+	path = meta-box
+	url = https://github.com/bainternet/My-Meta-Box.git
