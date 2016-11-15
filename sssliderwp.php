@@ -17,6 +17,7 @@ namespace gresnet;
 use gresnet\posttype\postType;
 
 include_once "post-types/slide.php";
+include_once "meta-box.php";
 
 postType::instance();
 Ssslider::instance();
@@ -58,16 +59,29 @@ class Ssslider {
 			echo "<div class='slider'>";
 			while($query->have_posts()) {
 				$query->the_post();
+				$cf = get_post_custom( );
+				$turl = $this->get_target_url($cf);
 				echo "<div class='slide'>";
-				the_post_thumbnail( 'full', '' );
+				if(has_post_thumbnail()) {
+					echo "<a href='".$turl."'>";
+					the_post_thumbnail( 'full', '' );
+					echo "</a>";
+				}
 				echo "<div class='text'><h1>".get_the_title()."</h1>";
 				the_content();
-				echo '<div class="more"><a href="#">Preberite več ...</a></div></div>';
+				echo '<div class="more"><a href="'.$url.'">Preberite več ...</a></div></div>';
 				echo "</div>";
 			}
 			echo "</div>";
-			echo "<script>jQuery('.slider').sss({'transition': 900});</script>";
+			echo "<script>jQuery('.slider').sss({'transition': 1200});</script>";
 		}
+	}
+
+	protected function get_target_url($cf) {
+		$url = isset($cf['ssm_target_url'][0])?$cf['ssm_target_url'][0]:"#";
+		$sch = is_ssl()?"https://":"http://";
+		$url = preg_match('/^https?:\/\//',$url) ? $url : $sch.$url;
+		return $url;
 	}
 
 	protected function set_version() {
