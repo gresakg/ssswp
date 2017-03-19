@@ -19,8 +19,8 @@ use gresnet\posttype\postType;
 include_once "post-types/slide.php";
 include_once "meta-box.php";
 
-postType::instance();
-Ssslider::instance();
+$sssliderPostType = postType::instance();
+$Ssslider = Ssslider::instance();
 
 class Ssslider {
 
@@ -67,13 +67,13 @@ class Ssslider {
 					the_post_thumbnail( 'full', '' );
 					echo "</a>";
 				}
-				echo "<div class='text'><h1>".get_the_title()."</h1>";
+				echo "<div class='text'><h1><a href='".$turl."'>".get_the_title()."</a></h1>";
 				the_content();
 				echo '<div class="more"><a href="'.$url.'">Preberite več ...</a></div></div>';
 				echo "</div>";
 			}
 			echo "</div>";
-			echo "<script>jQuery('.slider').sss({'transition': 1200});</script>";
+			echo "<script>jQuery('.slider').sss({'transition': 1200, speed: 8000});</script>";
 		}
 	}
 
