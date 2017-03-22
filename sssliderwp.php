@@ -69,7 +69,7 @@ class Ssslider {
 				}
 				echo "<div class='text'><h1><a href='".$turl."'>".get_the_title()."</a></h1>";
 				the_content();
-				echo '<div class="more"><a href="'.$url.'">Preberite več ...</a></div></div>';
+				echo '<div class="more"><a href="'.$turl.'">Preberite več ...</a></div></div>';
 				echo "</div>";
 			}
 			echo "</div>";
