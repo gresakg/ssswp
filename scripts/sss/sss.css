@@ -63,7 +63,7 @@
 	background-color: #C6E9FC;
 }
 
-.text {
+.slider .text {
 	position: absolute;
 	bottom:0;
 	right:0;
@@ -75,16 +75,16 @@
 	margin: 1em;
 }
 
-.text p {
+.slider .text p {
 	color:#444;
 }
 
-.more {
+.slider .more {
 	width:100%;
 	text-align: right;
 }
 
-.more a {
+.slider .more a {
 	padding:.5em .5em;
 	border-radius: 0;
 	background-color: #777;
@@ -95,7 +95,7 @@
 }
 
 @media screen and (max-width: 768px) {
-	.text {
+	.slider .text {
 		position: relative;
 		width:100%;
 		padding:0;
