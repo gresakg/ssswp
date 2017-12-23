@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:     Super Simple Slider for WordPress
- * Plugin URI:      http://gresak.net/plugins
+ * Plugin URI:      http://demo.gresak.net/ssswp
  * Description:     Slider that has everything a slider needs and nothing more.
  * Author:          Gregor Grešak
  * Author URI:      http://gresak.net
- * Text Domain:     sssliderwp
+ * Text Domain:     ssswp
  * Domain Path:     /languages
  * Version:         1.0.0
  *
@@ -102,7 +102,7 @@ class Ssslider {
 		$version = get_file_data(__FILE__,array("Version"));
 		$version = $version[0];
 		$remote_path = "http://demo.gresak.net/ssswp/update.php";
-		$plugin = "ssswp/ssslider.php";
+		$plugin = "ssswp/ssswp.php";
 		new GG_auto_update($version,$remote_path,$plugin); 
 	}
 

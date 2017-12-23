@@ -46,7 +46,7 @@ class GG_auto_update
         $this->plugin_slug = $plugin_slug;
         list ($t1, $t2) = explode('/', $plugin_slug); 
         $this->slug = str_replace('.php', '', $t2);
- 
+
         // define the alternative API for updating checking
         add_filter('pre_set_site_transient_update_plugins', array(&$this, 'check_update'));
  
@@ -62,6 +62,7 @@ class GG_auto_update
      */
     public function check_update($transient)
     {
+
         if (empty($transient->checked)) {
             return $transient;
         }
@@ -71,13 +72,14 @@ class GG_auto_update
  
         // If a newer version is available, add the update
         if (version_compare($this->current_version, $remote_version, '<')) {
-            $obj = new stdClass();
+            $obj = new \stdClass();
             $obj->slug = $this->slug;
             $obj->new_version = $remote_version;
             $obj->url = $this->update_path;
             $obj->package = $this->update_path;
             $transient->response[$this->plugin_slug] = $obj;
         }
+        
         return $transient;
     }
  
