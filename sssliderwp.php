@@ -2,12 +2,12 @@
 /**
  * Plugin Name:     Super Simple Slider for WordPress
  * Plugin URI:      http://gresak.net/plugins
- * Description:     PLUGIN DESCRIPTION HERE
+ * Description:     Slider that has everything a slider needs and nothing more.
  * Author:          Gregor Grešak
  * Author URI:      http://gresak.net
  * Text Domain:     sssliderwp
  * Domain Path:     /languages
- * Version:         0.1.1
+ * Version:         1.0.0
  *
  * @package         Sssliderwp
  */
@@ -15,6 +15,7 @@
 namespace gresnet;
 
 use gresnet\posttype\postType;
+use gresnet\update\GG_auto_update;
 
 include_once "post-types/slide.php";
 include_once "meta-box.php";
@@ -35,6 +36,7 @@ class Ssslider {
 		$this->get_plugin_url();
 		add_shortcode("sss",array($this,"display_slider"));
 		add_action('wp_enqueue_scripts', array($this,'load_scripts'));
+		add_filter('init', array($this,'updater'));
 	}
 
 	public function load_scripts() {
@@ -93,6 +95,15 @@ class Ssslider {
 
 	protected function get_plugin_url() {
 		$this->url = plugin_dir_url(__FILE__);
+	}
+
+	public function updater() {
+		include_once "update/GG_auto_update.php";
+		$version = get_file_data(__FILE__,array("Version"));
+		$version = $version[0];
+		$remote_path = "http://demo.gresak.net/ssswp/update.php";
+		$plugin = "ssswp/ssslider.php";
+		new GG_auto_update($version,$remote_path,$plugin); 
 	}
 
 
