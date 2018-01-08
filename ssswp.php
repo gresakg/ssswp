@@ -7,7 +7,7 @@
  * Author URI:      http://gresak.net
  * Text Domain:     ssswp
  * Domain Path:     /languages
- * Version:         1.1.0
+ * Version:         1.2.0
  *
  * @package         Sssliderwp
  */
@@ -35,6 +35,7 @@ class Ssslider {
 		$this->set_version();
 		$this->get_plugin_url();
 		add_shortcode("sss",array($this,"display_slider"));
+		add_filter( 'term_description', 'do_shortcode' );
 		add_action('wp_enqueue_scripts', array($this,'load_scripts'));
 		add_filter('init', array($this,'updater'));
 	}
